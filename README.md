@@ -36,18 +36,21 @@ The image on thr right is its closest image in the eigenfaces space.
 the right side is blank if it is non face.
 
 Some example for For k= 2
+
 ![alt text](pictures/K_2.PNG)
 ![alt text](pictures/K_2_1.PNG)
 ![alt text](pictures/K_2_2.PNG)
 ![alt text](pictures/K_2_3.PNG)
 
 Some example for For k= 5
+
 ![alt text](pictures/K_5.PNG)
 ![alt text](pictures/K_5_1.PNG)
 ![alt text](pictures/K_5_2.PNG)
 
 
 Some example for For k= 15
+
 ![alt text](pictures/K_15.PNG)
 ![alt text](pictures/K_15_1.PNG)
 ![alt text](pictures/K_15_2.PNG)
