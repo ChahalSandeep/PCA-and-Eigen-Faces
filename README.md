@@ -38,6 +38,7 @@ the right side is blank if it is non face.
 Some example for For k= 2
 
 ![alt text](pictures/K_2.PNG)
+
 ![alt text](pictures/K_2_1.PNG)
 ![alt text](pictures/K_2_2.PNG)
 ![alt text](pictures/K_2_3.PNG)
