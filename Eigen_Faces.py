@@ -1,6 +1,9 @@
+from tkinter import Toplevel, Label
 import matplotlib.pyplot as plt #plot import
+import matplotlib.colors  #color import
 import numpy as np  #importing numpy
 from PIL import Image #importing PIL to read all kind of images
+from PIL import ImageTk
 import glob
 
 def displaying_faces_grid(displaying_faces):
@@ -32,6 +35,7 @@ def display_mean_face(face_array):
     fig2.canvas.set_window_title('mean faces')
     plt.show()
     return mean
+
 def performing_pca(face_array):
     print("MEAN FACE DISPLAY")
     mean = display_mean_face(face_array)
@@ -77,7 +81,7 @@ def reading_faces_and_displaying():
     face_array=np.asarray(face_array)
     return face_array
 
-"""TASK 1"""
+#-------------------------------------------------task 1--------------------------------------------------
 face_array=reading_faces_and_displaying()
 mean,flatten_Array=performing_pca(face_array) # eigen_values,eigen_vectors
 substract_mean_from_original = np.subtract(flatten_Array, mean)
@@ -88,39 +92,37 @@ for x in range(V.shape[0]):
     Eigen_faces.append(fig)
 print("EIGEN FACES")
 display_all(Eigen_faces)
-
-"TASK 2"
-
+#-------------------------------------------------task 2--------------------------------------------------
 def display_reconstruction(images):
     fig4, axes_array = plt.subplots(5, 5)
     fig4.set_size_inches(5, 5)
     count = 0
     for x in range(5):
         for y in range(5):
-            draw_image = np.reshape(images[count, :], (425, 425))
+            draw_image = np.reshape(images[count,:],(425,425))
             image_plot = axes_array[x][y].imshow(draw_image, cmap=plt.cm.gray)
             axes_array[x][y].axis('off')
             count = count + 1
-    fig4.canvas.set_window_title('Reconstructed faces for k=' + str(k))
+    fig4.canvas.set_window_title('Reconstructed faces for k='+str(k))
     plt.show()
-def reconstructing_faces(k, mean, substract_mean_from_original, V):
-    weights = np.dot(substract_mean_from_original, V.T)
-    reconstruction = mean + np.dot(weights[:, 0:k], V[0:k, :])
+def reconstructing_faces(k,mean,substract_mean_from_original,V):
+    weights=np.dot(substract_mean_from_original, V.T)
+    reconstruction = mean + np.dot(weights[:,0:k], V[0:k,:])
     display_reconstruction(reconstruction)
-k = 2
+    
+k=2
 print("RECONSTRUCTING FACES FOR K=2")
-reconstructing_faces(k, mean, substract_mean_from_original, V)
-k = 5
-print("RECONSTRUCTING FACES FOR K=5")
-reconstructing_faces(k, mean, substract_mean_from_original, V)
-k = 15
-print("RECONSTRUCTING FACES FOR K=15")
-reconstructing_faces(k, mean, substract_mean_from_original, V)
-k=25
 reconstructing_faces(k,mean,substract_mean_from_original,V)
+k=5
+print("RECONSTRUCTING FACES FOR K=5")
+reconstructing_faces(k,mean,substract_mean_from_original,V)
+k=15
+print("RECONSTRUCTING FACES FOR K=15")
+reconstructing_faces(k,mean,substract_mean_from_original,V)
+#k=25
+#reconstructing_faces(k,mean,substract_mean_from_original,V)
 
-"""TASK 3"""
-
+#-------------------------------------------------task 3--------------------------------------------------
 def class_face(k,test_from_mean,test_flat_images,V,substract_mean_from_original,face_array):
     eigen_weights = np.dot(V[:k, :],substract_mean_from_original.T)
     threshold = 6000
@@ -174,13 +176,8 @@ test_from_mean=np.subtract(test_flat_images,mean)
 k=2
 print("FACES FOR K=2")
 class_face(k,test_from_mean,test_flat_images,V,substract_mean_from_original,face_array)
-k=5
-print("FACES FOR K=5")
-class_face(k,test_from_mean,test_flat_images,V,substract_mean_from_original,face_array)
-k=15
-print("FACES FOR K=15")
-class_face(k,test_from_mean,test_flat_images,V,substract_mean_from_original,face_array)
 
+#-------------------------------------------------task 4--------------------------------------------------
 """TASK 4"""
 def error_for_k(k,test_from_mean,V,substract_mean_from_original,train_list,test_list):
     count=0
@@ -208,7 +205,7 @@ def error_for_k(k,test_from_mean,V,substract_mean_from_original,train_list,test_
 
 
 train_list=[]
-for images in glob.glob('Eigenfaces/Train/*.jpg'):
+for images in glob.glob('C:/Users/Sandeep/Desktop/Eigen/Eigenfaces/Train/*.jpg'):
     a1=images
     _,a1 = a1.split('\\')
     #a1,_=a1.split('')
@@ -218,7 +215,7 @@ train_array=np.asarray(train_list)
 print("TRAIN IMAGES")
 print(train_list)
 test_list=[]
-for images in glob.glob('Eigenfaces/Test/*.jpg'):
+for images in glob.glob('C:/Users/Sandeep/Desktop/Eigen/Eigenfaces/Test/*.jpg'):
     a1=images
     _,a1 = a1.split('\\')
     a1,_=a1.split('_', maxsplit=1)
