@@ -23,7 +23,7 @@ Select top k=2 eigenfaces (eigenvectors which corresponds to the largest eigen v
 Reconstruct training faces and display reconstructed faces.
 Repeat process for k=5 and k=15 and k= 25.
 
-![alt text](pictures/recons_2.PNG)
+![screenshot](https://github.com/ChahalSandeep/PCA-and-Eigen-Faces/edit/master/pictures/recons_2.PNG)
 ![alt text](pictures/recons_5.PNG)
 ![alt text](pictures/recons_15.PNG)
 
